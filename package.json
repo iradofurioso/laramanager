@@ -1,0 +1,17 @@
+{
+  "name": "vista_demo_api",
+  "version": "1.0.0",
+  "description": "Vista - Real Estate API DEMO",
+  "main": "www/assets/app/js/Core/Boot.js",
+  "author": "Carlos Eduardo da Silva <carlosedasilva@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "jquery": "^3.3.1",
+    "jquery-form": "^4.2.2",
+    "pace-js": "^1.0.2"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.6.3"
+  }
+}
