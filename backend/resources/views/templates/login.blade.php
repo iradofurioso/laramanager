@@ -36,23 +36,45 @@
                         <h3 class="panel-title">LaraManager - Entrar no Sistema</h3>
 
                         <!-- BEGIN: Mensagem de erro -->
-                        @if($msg!='')
-                            <div class="alert alert-danger" role="alert">
-                                {{ $msg }}
-                            </div>
-                        @endif
+                            <!-- <div class="alert alert-danger" role="alert">
+                            </div> -->
                         <!-- END: Mensagem de erro -->
 
                     </div>
                     <div class="panel-body">
-                        <form action="home" method="get" accept-charset="UTF-8" role="form">
+                        <form action="{{ route('login') }}" method="post" accept-charset="UTF-8" role="form">
+
+                        
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="admin@admin.com" name="email" type="text">
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="admin@admin.com" autocomplete="email" autofocus required>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Senha..."  value="" autocomplete="current-password" required>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                        <label class="form-check-label" for="remember" style="color:#6f6c6c;">
+                                            Lembrar acesso
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <br>
                             <small style="color:#BDBDBD;">
                                 Login: admin@admin.com 
@@ -61,7 +83,14 @@
                             </small>
                             <br>
                             <br>
+                            @csrf
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Entrar">
+
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Esqueceu a sua senha?
+                                </a>
+                            @endif
                         </fieldset>
                         </form>
                     </div>

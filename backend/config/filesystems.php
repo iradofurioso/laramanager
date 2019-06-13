@@ -64,6 +64,14 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'laraManagerFiles' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/assets/app/storage/modules',
+        ],
+
     ],
+
+
+    
 
 ];

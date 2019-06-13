@@ -36,7 +36,7 @@
             @forelse($clientes as $cli)
                 <tr id="tr_{{ $cli->id_cliente }}">
                     <td><i class="fas fa-barcode"></i> {{ $cli->id_cliente }}</td>
-                    <td><img src="assets/app/img/public/{{ $cli->foto }}" style="height:50px;width:50px;"> {{ $cli->nome }}</td>
+                    <td><img src="assets/app/storage/modules/clientes/{{ $cli->foto }}" style="height:50px;width:50px;"> {{ $cli->nome }}</td>
                     <td>{{ $cli->email }}</td>
                     <td>{{ $cli->telefone }}</td>
                     <td>

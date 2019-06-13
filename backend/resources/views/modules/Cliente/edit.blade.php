@@ -1,5 +1,5 @@
             <div class="modal-header">
-                <h5 class="modal-title" id="laramanager-modal-lLabel">Adicionar Cliente</h5>
+                <h5 class="modal-title" id="laramanager-modal-lLabel">Editar Cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         <label for="foto">Foto</label>
-                        <img src="assets/app/img/public/{{ $cliente->foto }}" style="height:50px;width:50px;">
+                        <img src="assets/app/storage/modules/clientes/{{ $cliente->foto }}" style="height:50px;width:50px;">
                         <input type="hidden" value="{{ $cliente->foto }}" name="foto" id="foto">
                     </div>
 
@@ -45,7 +45,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    {!! csrf_field() !!}
+                    @csrf
                     <input type="hidden" name="id" id="id" value="{{ $id }}">
                     <button type="submit" class="btn btn-success" id="laramanager-submit"><i class="fas fa-save"></i> Salvar</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="far fa-window-close"></i> Cancelar</button>

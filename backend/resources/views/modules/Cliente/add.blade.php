@@ -51,7 +51,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    {!! csrf_field() !!}
+                    @csrf
                     <button type="submit" class="btn btn-success" id="laramanager-submit"><i class="fas fa-save"></i> Salvar</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="far fa-window-close"></i> Cancelar</button>
                 </div>

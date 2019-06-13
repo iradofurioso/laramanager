@@ -25,3 +25,7 @@ Route::group(['prefix' => 'clientes'], function() {
     Route::post('save/{id?}', 'Cliente\ClienteController@save');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -21,7 +21,7 @@
 
             <form action="clientes/delete/{{ $id }}" id="laramodel-modal-form" method="post">
                 <div class="modal-footer">
-                    {!! csrf_field() !!}
+                    @csrf
                     <button type="submit" class="btn btn-danger" id="laramanager-submit"><i class="fas fa-trash-alt"></i> Apagar</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="far fa-window-close"></i> Cancelar</button>
                 </div>

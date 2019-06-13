@@ -60,14 +60,25 @@ class ClienteController extends Controller
      */
     public function save(Request $request, $id = null)
     {
-        $file       = request()->file('foto');
-        $cliFoto    = $file->store('clientes', ['disk' => 'public']);
+        if($request->hasFile("foto") and $id == null) { 
+            $file           = request()->file('foto');
+            $rawFileName    =  time() .'_'. $file->getClientOriginalName();
+            $fileName       = strtolower(str_slug(pathinfo($rawFileName, PATHINFO_FILENAME), "-"));
+            $fileName      .= '.' . strtolower(pathinfo($rawFileName, PATHINFO_EXTENSION));
+            $cliFoto        = $file->storeAs('clientes', $fileName, 'laraManagerFiles');
+        } else {
+            $error['savedstatus']	= '0';
+            $error['message']		= 'Obrigatório envio de imagem!';
+            $error['id'] 			= $id;
+
+            return $error;
+        }
         
         $cli                = TbCliente::findOrNew($id);
         $cli->nome          = $request->nome;
         $cli->email         = $request->email;
         $cli->telefone      = $request->telefone;
-        $cli->foto          = $cliFoto;
+        $cli->foto          = $fileName;
         $cli->status        = $request->status;
         $cli->fk_id_user    = 1;
         
@@ -78,9 +89,9 @@ class ClienteController extends Controller
         $success['nome'] 		= $request->nome;
         $success['email'] 		= $request->email;
         $success['telefone'] 	= $request->telefone;
-        $success['foto']        = $cliFoto;
+        $success['foto']        = $fileName;
         $success['id'] 			= $cli->id_cliente;
-        echo json_encode($success);
+        return $success;
     }
 
     /**
@@ -101,14 +112,14 @@ class ClienteController extends Controller
                 $error['message']		= 'O cliente não existe!';
                 $error['id'] 			= $id;
 
-                echo json_encode($error);
+                return $error;
             } else {
                 $cli->delete();
 
                 $success['savedstatus']	= '1';
                 $success['message']		= 'O cliente foi removido com sucesso!';
                 $success['id'] 			= $id;
-                echo json_encode($success);
+                return $success;
             }
 
         } elseif( $request->isMethod('get') ) {
