@@ -2,6 +2,7 @@
 /private/storage/*.key
 /private/vendor
 /srvlogs/*
+**/.DS_Store
 .env
 .phpunit.result.cache
 Homestead.json
