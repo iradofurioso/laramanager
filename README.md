@@ -20,12 +20,7 @@ Um gerenciador de clientes simples. Feito do zero com Laravel e Template com Twi
 
 ### Installation
 
-Criar e configurar o arquivo .env com as configurações do servidor link e banco de dados. Criar um 
-link relativo / atalho da pasta storage para a pasta pública para visualizar as fotos. 
-
-ln -s ~/Sites/laramanager/backend/storage/app/public ~/Sites/laramanager/www/assets/app/img
-
-Ficar atento no caminho, pois pode ser diferente em outro ambiente.
+Criar e configurar o arquivo .env com as configurações do servidor link e banco de dados. 
 
 ## Licence
 
