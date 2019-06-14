@@ -4,7 +4,6 @@ Um gerenciador de clientes simples. Feito do zero com Laravel e Template com Twi
 
 # TODO 
 
-* Falta fazer o método de autenticação. 
 * Falta colocar um tratamento de arquivos mais adequado.
 
 ## Requirements
@@ -20,7 +19,20 @@ Um gerenciador de clientes simples. Feito do zero com Laravel e Template com Twi
 
 ### Installation
 
-Criar e configurar o arquivo .env com as configurações do servidor link e banco de dados. 
+1. Baixar o projeto
+    1. Copiar a pasta www para a pasta pública do apache. Em alguns casos renomear para public_html
+    2. Copiar os arquivos restantes e a pasta "private" no diretório acima (pai) de www (ou public_html)
+2. Entrar na pasta private
+    1. copiar o arquivo .env.example para .env
+        1. Editar o arquivo com as devidas configurações do servidor (banco de dados e domínio)
+    2. Executar o $ composer install
+    3. Executar $ php artisan key:generate
+    4. Executar $ composer dump-autoload
+    5. Executar $ php artisan clear-compiled
+    6. Executar $ php artisan migrate
+    7. Executar $ php artisan db:seed
+
+🍺 Feito!
 
 ## Licence
 
