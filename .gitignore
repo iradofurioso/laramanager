@@ -1,7 +1,7 @@
 /www/assets/app/storage/modules
 /private/storage/*.key
 /private/vendor
-/srvlogs/*
+/srvlogs
 **/.DS_Store
 .env
 .phpunit.result.cache

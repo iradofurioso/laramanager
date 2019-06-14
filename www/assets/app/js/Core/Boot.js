@@ -7,6 +7,9 @@
  */
 
 
+// App parameters 
+appUrl = appUrl + '/';
+
 
 /**
  * Requests in background the backend module.
@@ -167,7 +170,7 @@ var laramanagerEditCliente =
 			triggerSuccessForModal(data);
 			$('#tr_'+data.id).empty();
 			
-			trTable ='<td><i class="fas fa-barcode"></i> '+data.id+'</td><td><img src="assets/app/storage/modules/clientes/'+data.foto+'" style="height:50px;width:50px;"> '+data.nome+'</td><td>'+data.email+'</td><td>'+data.telefone+'</td><td><a href="#" class="btn btn-danger" onclick="triggerModal('+data.id+', \'clientes/delete\');" role="button" aria-pressed="true"><i class="fas fa-trash-alt"></i></a><a href="#" class="btn btn-warning" onclick="triggerModal('+data.id+', \'clientes/edit\');" role="button" aria-pressed="true"><i class="fas fa-edit"></i></a></td>';
+			trTable ='<td><i class="fas fa-barcode"></i> '+data.id+'</td><td><img src="assets/app/storage/modules/clientes/'+data.foto+'" style="height:50px;width:50px;"> '+data.nome+'</td><td>'+data.email+'</td><td>'+data.telefone+'</td><td><a href="#" class="btn btn-danger" onclick="triggerModal('+data.id+', \'customer/delete\');" role="button" aria-pressed="true"><i class="fas fa-trash-alt"></i></a><a href="#" class="btn btn-warning" onclick="triggerModal('+data.id+', \'customer/edit\');" role="button" aria-pressed="true"><i class="fas fa-edit"></i></a></td>';
 			
 			$('#tr_'+data.id).html(trTable);
 			closeModal(2000); 
@@ -188,7 +191,7 @@ var laramanagerAddCliente =
 	success:    function(data) {
 		if(data.savedstatus == 1) {
             triggerSuccessForModal(data);
-			trTable ='<tr id="tr_'+data.id+'"><td><i class="fas fa-barcode"></i> '+data.id+'</td><td><img src="assets/app/storage/modules/clientes/'+data.foto+'" style="height:50px;width:50px;"> '+data.nome+'</td><td>'+data.email+'</td><td>'+data.telefone+'</td><td><a href="#" class="btn btn-danger" onclick="triggerModal('+data.id+', \'clientes/delete\');" role="button" aria-pressed="true"><i class="fas fa-trash-alt"></i></a> <a href="#" class="btn btn-warning" onclick="triggerModal('+data.id+', \'clientes/edit\');" role="button" aria-pressed="true"><i class="fas fa-edit"></i></a></td></tr>';
+			trTable ='<tr id="tr_'+data.id+'"><td><i class="fas fa-barcode"></i> '+data.id+'</td><td><img src="assets/app/storage/modules/clientes/'+data.foto+'" style="height:50px;width:50px;"> '+data.nome+'</td><td>'+data.email+'</td><td>'+data.telefone+'</td><td><a href="#" class="btn btn-danger" onclick="triggerModal('+data.id+', \'customer/delete\');" role="button" aria-pressed="true"><i class="fas fa-trash-alt"></i></a> <a href="#" class="btn btn-warning" onclick="triggerModal('+data.id+', \'customer/edit\');" role="button" aria-pressed="true"><i class="fas fa-edit"></i></a></td></tr>';
 
 			$('#laramanager-grid tbody tr:last').after(trTable);
 

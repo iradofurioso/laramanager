@@ -2,10 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <meta charset="utf-8">
-    <title>LOGIN | LaraManager</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="description" content="Simple customer manager">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Carlos Eduardo da Silva - carlosedasilva@gmail.com">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
@@ -14,7 +17,7 @@
     <link href="assets/app/img/ico.png" rel="shortcut icon" type="image/x-icon">
 
     <script>
-        var appUrl = '{{ $url }}';
+        var appUrl = '{{ url('') }}';
     </script>
 
   </head>
@@ -79,18 +82,12 @@
                             <small style="color:#BDBDBD;">
                                 Login: admin@admin.com 
                                 <br> 
-                                Senha: admin
+                                Senha: 12345678
                             </small>
                             <br>
                             <br>
                             @csrf
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Entrar">
-
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Esqueceu a sua senha?
-                                </a>
-                            @endif
                         </fieldset>
                         </form>
                     </div>

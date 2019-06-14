@@ -8,19 +8,24 @@ use LaraManager\Http\Controllers\Controller;
 class AppController extends Controller
 {
     
-    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application major layout.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
-        $data['url'] = 'http://laramanager.dev.br/'; 
-        return view('templates.layout')->with($data);
-    }
-    
-    
-    public function login()
-    {
-        $data['url'] = 'http://laramanager.dev.br/'; 
-        $data['msg'] = '';
-        return view('templates.login')->with($data);
+        return view('templates.layout');
     }
 
 }

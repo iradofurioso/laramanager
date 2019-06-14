@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group">
-        <a href="#" class="btn btn-success" onclick="triggerModal('', 'clientes/add');" role="button" aria-pressed="true">
+        <a href="#" class="btn btn-success" onclick="triggerModal('', 'customer/add');" role="button" aria-pressed="true">
             <i class="fas fa-plus-circle"></i> Adicionar
         </a>
     </div>
@@ -34,16 +34,16 @@
           <tbody>
             <!-- INI: Data -->
             @forelse($clientes as $cli)
-                <tr id="tr_{{ $cli->id_cliente }}">
-                    <td><i class="fas fa-barcode"></i> {{ $cli->id_cliente }}</td>
-                    <td><img src="assets/app/storage/modules/clientes/{{ $cli->foto }}" style="height:50px;width:50px;"> {{ $cli->nome }}</td>
+                <tr id="tr_{{ $cli->id }}">
+                    <td><i class="fas fa-barcode"></i> {{ $cli->id }}</td>
+                    <td><img src="assets/app/storage/modules/clientes/{{ $cli->photo }}" style="height:50px;width:50px;"> {{ $cli->name }}</td>
                     <td>{{ $cli->email }}</td>
-                    <td>{{ $cli->telefone }}</td>
+                    <td>{{ $cli->phone }}</td>
                     <td>
-                        <a href="#" class="btn btn-danger" onclick="triggerModal({{ $cli->id_cliente }}, 'clientes/delete');" role="button" aria-pressed="true">
+                        <a href="#" class="btn btn-danger" onclick="triggerModal({{ $cli->id }}, 'customer/delete');" role="button" aria-pressed="true">
                             <i class="fas fa-trash-alt"></i>
                         </a>
-                        <a href="#" class="btn btn-warning" onclick="triggerModal({{ $cli->id_cliente }}, 'clientes/edit');" role="button" aria-pressed="true">
+                        <a href="#" class="btn btn-warning" onclick="triggerModal({{ $cli->id }}, 'customer/edit');" role="button" aria-pressed="true">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>

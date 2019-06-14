@@ -11,21 +11,21 @@
 |
 */
 
-// Rotas não agrupadas
-Route::get('/', 'Base\AppController@login');
-Route::get('/home', 'Base\AppController@index');
+//--
+//Non-grouped routes
+Route::get('/', 'Base\AppController@index');
 Route::get('dashboard', 'Dashboard\DashboardController@index');
 
-// Módulo clientes
-Route::group(['prefix' => 'clientes'], function() {
-    Route::get('/', 'Cliente\ClienteController@index');
-    Route::get('add', 'Cliente\ClienteController@add');
-    Route::get('edit/{id}', 'Cliente\ClienteController@edit');
-    Route::any('delete/{id}', 'Cliente\ClienteController@delete');
-    Route::post('save/{id?}', 'Cliente\ClienteController@save');
+//--
+//Customer module
+Route::group(['prefix' => 'customer'], function() {
+    Route::get('/', 'Customer\CustomerController@index');
+    Route::get('add', 'Customer\CustomerController@add');
+    Route::get('edit/{id}', 'Customer\CustomerController@edit');
+    Route::any('delete/{id}', 'Customer\CustomerController@delete');
+    Route::post('save/{id?}', 'Customer\CustomerController@save');
 });
 
-
+//--
+// Auto-generate routes
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

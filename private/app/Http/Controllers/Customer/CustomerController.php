@@ -1,30 +1,32 @@
 <?php
 /**
- * Controller do cliente.
+ * This controller handles customer entity and provides the 
+ * necessary features to manage it.
  * 
- * @author: Carlos Eduardo da Silva <carlosedasilva@gmail.com>
- * @package: Controllers
+ * @author Carlos Eduardo da Silva <carlosedasilva@gmail.com>
+ * @package Controllers
  */
 
-namespace LaraManager\Http\Controllers\Cliente;
+namespace LaraManager\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use LaraManager\Http\Controllers\Controller;
-use LaraManager\Model\TbCliente;
+use LaraManager\Model\TbCustomer;
+use Auth;
 
-class ClienteController extends Controller
+class CustomerController extends Controller
 {
     /**
-     * Página inicial do módulo. 
+     * Module home screen. 
      * 
      * @return View
      */
     public function index()
-    {
-        $data['clientes'] = TbCliente::all();
+    {       
+        $data['clientes'] = TbCustomer::all();
         
-        return view('modules.Cliente.list')->with($data);
+        return view('modules.Customer.list')->with($data);
     }
 
     /**
@@ -34,7 +36,7 @@ class ClienteController extends Controller
      */
     public function add()
     {
-        return view('modules.Cliente.add');
+        return view('modules.Customer.add');
     }
 
     /**
@@ -46,9 +48,9 @@ class ClienteController extends Controller
     public function edit($id)
     {
         $data['id']         = $id;
-        $data['cliente']    = TbCliente::find($id);
+        $data['cliente']    = TbCustomer::find($id);
         
-        return view('modules.Cliente.edit')->with($data);
+        return view('modules.Customer.edit')->with($data);
     }
 
     /**
@@ -60,27 +62,23 @@ class ClienteController extends Controller
      */
     public function save(Request $request, $id = null)
     {
-        if($request->hasFile("foto") and $id == null) { 
+        if($request->hasFile("foto")) { 
             $file           = request()->file('foto');
             $rawFileName    =  time() .'_'. $file->getClientOriginalName();
             $fileName       = strtolower(str_slug(pathinfo($rawFileName, PATHINFO_FILENAME), "-"));
             $fileName      .= '.' . strtolower(pathinfo($rawFileName, PATHINFO_EXTENSION));
             $cliFoto        = $file->storeAs('clientes', $fileName, 'laraManagerFiles');
         } else {
-            $error['savedstatus']	= '0';
-            $error['message']		= 'Obrigatório envio de imagem!';
-            $error['id'] 			= $id;
-
-            return $error;
+            $fileName = $request->foto;
         }
         
-        $cli                = TbCliente::findOrNew($id);
-        $cli->nome          = $request->nome;
+        $cli                = TbCustomer::findOrNew($id);
+        $cli->name          = $request->nome;
         $cli->email         = $request->email;
-        $cli->telefone      = $request->telefone;
-        $cli->foto          = $fileName;
+        $cli->phone         = $request->telefone;
+        $cli->photo         = $fileName;
         $cli->status        = $request->status;
-        $cli->fk_id_user    = 1;
+        $cli->fk_id_user    = Auth::id();
         
         $cli->save();
         
@@ -90,7 +88,7 @@ class ClienteController extends Controller
         $success['email'] 		= $request->email;
         $success['telefone'] 	= $request->telefone;
         $success['foto']        = $fileName;
-        $success['id'] 			= $cli->id_cliente;
+        $success['id'] 			= $cli->id;
         return $success;
     }
 
@@ -105,7 +103,7 @@ class ClienteController extends Controller
     {
         if( $request->isMethod('post') ) {
 
-            $cli = TbCliente::find($id);
+            $cli = TbCustomer::find($id);
 
             if(!$cli) {
                 $error['savedstatus']	= '0';
@@ -124,9 +122,9 @@ class ClienteController extends Controller
 
         } elseif( $request->isMethod('get') ) {
             $data['id']         = $id;
-            $data['cliente']    = TbCliente::find($id);
+            $data['cliente']    = TbCustomer::find($id);
             
-            return view('modules.Cliente.delete')->with($data);
+            return view('modules.Customer.delete')->with($data);
         }
     }
 }

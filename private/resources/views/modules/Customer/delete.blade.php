@@ -16,10 +16,10 @@
                 Você tem certeza que deseja apagar este cliente? 
                 <br>
                 <br>
-                <strong>{{ $cliente->nome }}</strong>.
+                <strong>{{ $cliente->name }}</strong>.
             </div>
 
-            <form action="clientes/delete/{{ $id }}" id="laramodel-modal-form" method="post">
+            <form action="customer/delete/{{ $id }}" id="laramodel-modal-form" method="post">
                 <div class="modal-footer">
                     @csrf
                     <button type="submit" class="btn btn-danger" id="laramanager-submit"><i class="fas fa-trash-alt"></i> Apagar</button>

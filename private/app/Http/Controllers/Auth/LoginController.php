@@ -4,6 +4,7 @@ namespace LaraManager\Http\Controllers\Auth;
 
 use LaraManager\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -44,7 +45,14 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        $data['url'] = 'http://laramanager.dev.br/'; 
-        return view('templates.login')->with($data);
+        return view('templates.login');
+    }
+    
+    /**
+     * Logout the user. 
+     */
+    protected function loggedOut(Request $request) 
+    {
+        return redirect('login');
     }
 }

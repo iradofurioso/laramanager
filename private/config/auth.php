@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'tb_users',
     ],
 
     /*
@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'tb_users',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'tb_users',
             'hash' => false,
         ],
     ],
@@ -66,14 +66,9 @@ return [
     */
 
      'providers' => [
-    //     'users' => [
-    //         'driver' => 'eloquent',
-    //         'model' => LaraManager\User::class,
-    //     ],
-
-        'users' => [
-            'driver' => 'database',
-            'table' => 'tb_usuarios',
+        'tb_users' => [
+            'driver' => 'eloquent',
+            'model' => LaraManager\Model\TbUser::class,
         ],
     ],
 
@@ -93,9 +88,9 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
+        'tb_users' => [
+            'provider' => 'tb_users',
+            'table' => 'tb_password_resets',
             'expire' => 60,
         ],
     ],
